@@ -1,0 +1,16 @@
+#!/bin/bash
+
+set -ex
+
+_SOPEL_BRANCH=${SOPEL_BRANCH:-master}
+
+docker build \
+  --build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` \
+  --build-arg VCS_REF=$(\
+    git ls-remote https://github.com/sopel-irc/sopel \
+      | grep "${_SOPEL_BRANCH}" \
+      | head -n 1 \
+      | head -c 7) \
+  --build-arg DOCKERFILE_VCS_REF=`git rev-parse --short HEAD` \
+  -f "${DOCKERFILE_PATH}" \
+  -t "${IMAGE_NAME}" .

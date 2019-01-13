@@ -52,16 +52,25 @@ RUN set -ex \
 ### STAGE 2: Install Sopel
 #####
 FROM python:${PYTHON_TAG}
+# Pre-set ARGs
 ARG SOPEL_BRANCH
+# Injected ARGs
+ARG BUILD_DATE
+ARG VCS_REF
+ARG DOCKERFILE_VCS_REF
 LABEL maintainer="Humorous Baby <baby.humorous@gmail.com>" \
+      org.label-schema.build-date="${BUILD_DATE}" \
       org.label-schema.name="sopel" \
       org.label-schema.description=" \
         Sopel, the Python IRC bot. \
         For stand-alone or compose/stack service use." \
       org.label-schema.url="https://sopel.chat" \
       org.label-schema.vcs-url="https://github.com/sopel-irc/sopel" \
+      org.label-schema.vcs-ref="${VCS_REF}" \
       org.label-schema.version="Python ${PYTHON_VERSION}/Sopel ${SOPEL_BRANCH}" \
-      org.label-schema.schema-version="1.0"
+      org.label-schema.schema-version="1.0" \
+      dockerfile.vcs-url="https://github.com/sopel-irc/sopel-docker" \
+      dockerfile.vcf-ref="${DOCKERFILE_VCS_REF}"
 
 ARG SOPEL_GID
 ARG SOPEL_UID
