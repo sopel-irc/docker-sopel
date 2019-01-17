@@ -18,15 +18,15 @@
 
 ### First run
 
-* Pull the docker image for the latest Sopel release ([v6.6.0]([https://github.com/sopel-irc/sopel/releases/tag/v6.6.0))
+* Pull the docker image for the latest Sopel release ([v6.6.0](https://github.com/sopel-irc/sopel/releases/tag/v6.6.0))
 
-    ```bash
+    ```console
     docker pull sopelirc/sopel:latest
     ```
 
 * Start your bot. Specify a name (e.g., `my_first_sopel`) for the container to make subsequent startups and shutdowns easier.
 
-    ```bash
+    ```console
     docker run --name=my_first_sopel -ti sopelirc/sopel
     ```
 
@@ -35,11 +35,13 @@
 ### Stopping and starting the bot
 
 * You can stop the bot started with the command above with a simple keyboard interrupt (`Ctrl-C`), or use the docker stop command: `docker stop my_first_sopel`
-* The bot can be restarted with the docker start command: `docker start -ia my_first_sopel`. _Note:  started with `docker start ...` need to be stopped with `docker stop ...` (`Ctrl-C` will not work) as in the example above.
+* The bot can be restarted with the docker start command: `docker start -ia my_first_sopel`. 
+
+    **Note:**  containers started with `docker start ...` need to be stopped with `docker stop ...` (`Ctrl-C` will not work) as in the example above.
 
 ---
 
-## :construction: :construction: :construction: :construction: :construction: </h2>
+## :construction: :construction: :construction: :construction: :construction:
 
 **Detailed documentation is under construction.**
 
