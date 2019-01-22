@@ -99,4 +99,8 @@ RUN set -ex \
 ENV PATH="/home/sopel/.local/bin:${PATH}"
 
 VOLUME [ "/home/sopel" ]
+
+COPY entrypoint.sh /entrypoint.sh
+
+ENTRYPOINT [ "/entrypoint.sh" ]
 CMD [ "sopel" ]
