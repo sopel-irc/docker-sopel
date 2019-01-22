@@ -2,7 +2,7 @@
 set -e
 
 # Run `sopel` with the provided arguments
-if [ "${#}" -eq 0 ] || [ $"{1#-}" != "${1}" ]; then
+if [ "${#}" -eq 0 ] || [ "${1#-}" != "${1}" ]; then
   set -- sopel "${@}"
 fi
 
