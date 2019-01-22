@@ -19,12 +19,13 @@ VCF_REF=${VCF_REF:-$(\
     | head -n 1 \
     | head -c 7 \
 )}
+DOCKERFILE_VCS_REF=${DOCKERFILE_VCS_REF:-$(git rev-parse --short HEAD)}
 
 docker build \
   --build-arg PYTHON_TAG="${PYTHON_TAG}" \
   --build-arg SOPEL_BRANCH="${SOPEL_BRANCH}" \
-  --build-arg BUILD_DATE=${BUILD_DATE} \
-  --build-arg VCS_REF=${VCF_REF} \
-  --build-arg DOCKERFILE_VCS_REF=`git rev-parse --short HEAD` \
+  --build-arg BUILD_DATE="${BUILD_DATE}" \
+  --build-arg VCS_REF="${VCF_REF}" \
+  --build-arg DOCKERFILE_VCS_REF="${DOCKERFILE_VCS_REF}" \
   -f "${DOCKERFILE_PATH}" \
   -t "${IMAGE_NAME}" .
