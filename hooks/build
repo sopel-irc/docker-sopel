@@ -10,15 +10,21 @@ set -ex
 PYTHON_TAG=${PYTHON_TAG:-3.4-alpine}
 SOPEL_BRANCH=${SOPEL_BRANCH:-v6.6.0}
 
+# Prevent cache busting during development builds by allowing build-specific
+# ARGs to be set by environment variables.
+BUILD_DATE=${BUILD_DATE:-$(date -u +"%Y-%m-%dT%H:%M:%SZ")}
+VCF_REF=${VCF_REF:-$(\
+  git ls-remote https://github.com/sopel-irc/sopel \
+    | grep "${SOPEL_BRANCH}" \
+    | head -n 1 \
+    | head -c 7 \
+)}
+
 docker build \
   --build-arg PYTHON_TAG="${PYTHON_TAG}" \
   --build-arg SOPEL_BRANCH="${SOPEL_BRANCH}" \
-  --build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` \
-  --build-arg VCS_REF=$(\
-    git ls-remote https://github.com/sopel-irc/sopel \
-      | grep "${SOPEL_BRANCH}" \
-      | head -n 1 \
-      | head -c 7) \
+  --build-arg BUILD_DATE=${BUILD_DATE} \
+  --build-arg VCS_REF=${VCF_REF} \
   --build-arg DOCKERFILE_VCS_REF=`git rev-parse --short HEAD` \
   -f "${DOCKERFILE_PATH}" \
   -t "${IMAGE_NAME}" .
