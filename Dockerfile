@@ -80,7 +80,10 @@ RUN set -ex \
     enchant \
 \
   && addgroup -g ${SOPEL_GID} sopel \
-  && adduser -u ${SOPEL_UID} -G sopel -h /home/sopel sopel -D
+  && adduser -u ${SOPEL_UID} -G sopel -h /home/sopel sopel -D \
+\
+  && mkdir /home/sopel/.sopel \
+  && chown sopel:sopel /home/sopel/.sopel
 
 USER sopel
 WORKDIR /home/sopel
