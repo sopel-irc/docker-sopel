@@ -13,7 +13,7 @@ SOPEL_BRANCH=${SOPEL_BRANCH:-v6.6.0}
 # Prevent cache busting during development builds by allowing build-specific
 # ARGs to be set by environment variables.
 BUILD_DATE=${BUILD_DATE:-$(date -u +"%Y-%m-%dT%H:%M:%SZ")}
-VCF_REF=${VCF_REF:-$(\
+VCS_REF=${VCS_REF:-$(\
   git ls-remote https://github.com/sopel-irc/sopel \
     | grep "${SOPEL_BRANCH}" \
     | head -n 1 \
@@ -25,7 +25,7 @@ docker build \
   --build-arg PYTHON_TAG="${PYTHON_TAG}" \
   --build-arg SOPEL_BRANCH="${SOPEL_BRANCH}" \
   --build-arg BUILD_DATE="${BUILD_DATE}" \
-  --build-arg VCS_REF="${VCF_REF}" \
+  --build-arg VCS_REF="${VCS_REF}" \
   --build-arg DOCKERFILE_VCS_REF="${DOCKERFILE_VCS_REF}" \
   -f "${DOCKERFILE_PATH}" \
   -t "${IMAGE_NAME}" .
