@@ -10,7 +10,7 @@
 **Relevant links**:
 
 * Sopel Homepage @ [Sopel, The Python IRC Bot](https://sopel.chat)
-* Sople GitHub @ [sopel-irc/sopel](https://github.com/sopel-irc/sopel)
+* Sopel GitHub @ [sopel-irc/sopel](https://github.com/sopel-irc/sopel)
 * Docker GitHub @ [sopel-irc/sopel-docker](https://github.com/sopel-irc/sopel-docker)
 * Docker Registry @ [sopelirc/sopel](https://hub.docker.com/r/sopelirc/sopel)
 
@@ -30,7 +30,7 @@
     docker run --name=my_first_sopel -ti sopelirc/sopel
     ```
 
-    On the first run, you will be taken through the setup wizard to write the bot's configuration file. See the ["First run" Sopel Wiki entry](https://github.com/sopel-irc/sopel/wiki/Sopel-tutorial,-Part-1#first-run) for more details.
+    On the first run, you will be taken through the setup wizard to write the bot's configuration file. See the ["First run" Sopel Wiki entry](https://sopel.chat/tutorials/part-1-installation/#first-run) for more details.
 
 ### Stopping and starting the bot
 
