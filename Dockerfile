@@ -77,6 +77,7 @@ ARG SOPEL_UID
 
 RUN set -ex \
   && apk add --no-cache \
+    shadow \
     su-exec \
     enchant \
 \
@@ -101,7 +102,9 @@ RUN set -ex \
 
 VOLUME [ "/home/sopel" ]
 
-COPY entrypoint.sh /entrypoint.sh
-
 ENTRYPOINT [ "/entrypoint.sh" ]
 CMD [ "sopel" ]
+
+COPY entrypoint.sh /entrypoint.sh
+COPY ./bin/sopel-chids \
+  /usr/local/bin/

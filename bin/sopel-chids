@@ -1,0 +1,38 @@
+#!/bin/sh
+set -e
+
+usage () {
+  echo "Usage: sopel-chids [-u new_uid | -g new_gid] | [-u new_uid -g new_gid]"
+}
+
+change_uid () {
+  usermod -u "${1}" sopel
+  echo "Successfully change UID for Sopel user to ${1}."
+}
+
+change_gid () {
+  groupmod -g "${1}" sopel
+  echo "Successfully change GID for Sopel user to ${1}."
+}
+
+## Main
+
+NEW_UID=
+NEW_GID=
+
+while [ "${1}" != "" ]; do
+  case "${1}" in
+    -u | --uid )  shift
+                  NEW_UID="${1}"
+                  ;;
+    -g | --gid )  shift
+                  NEW_GID="${1}"
+                  ;;
+    esac
+    shift
+done
+
+([ -n "${NEW_UID}" ] || [ -n "${NEW_GID}" ]) || (usage && exit 1)
+
+if [ -n "${NEW_UID}" ]; then change_uid "${NEW_UID}"; fi
+if [ -n "${NEW_GID}" ]; then change_gid "${NEW_GID}"; fi
