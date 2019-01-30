@@ -1,7 +1,24 @@
 #!/bin/sh
-set -ex
+set -e
 
 export PATH="/home/sopel/.local/bin:${PATH}"
+
+# Define functions
+change_uid () {
+  NEW_UID="${1}"
+  echo -n "Setting UID for user sopel to ${NEW_UID}... "
+  (usermod -u "${NEW_UID}" sopel && echo "Done.") || (echo "FAILED!" && return 1)
+}
+
+change_gid () {
+  NEW_GID="${1}"
+  echo -n "Setting GID for user sopel to ${NEW_GID}... "
+  (groupmod -g "${NEW_GID}" sopel && echo "Done.") || (echo "FAILED!" && return 1)
+}
+
+# Check if IDs need to be changed
+[ -n "${PUID}" ] && change_uid "${PUID}"
+[ -n "${PGID}" ] && change_gid "${PGID}"
 
 # Set arguments/flags for sopel command
 if [ "${#}" -eq 0 ] || [ "${1#-}" != "${1}" ]; then

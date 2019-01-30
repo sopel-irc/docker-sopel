@@ -77,6 +77,7 @@ ARG SOPEL_UID
 
 RUN set -ex \
   && apk add --no-cache \
+    shadow \
     su-exec \
     enchant \
 \
