@@ -27,5 +27,6 @@ docker build \
   --build-arg BUILD_DATE="${BUILD_DATE}" \
   --build-arg VCS_REF="${VCS_REF}" \
   --build-arg DOCKERFILE_VCS_REF="${DOCKERFILE_VCS_REF}" \
-  -f "${DOCKERFILE_PATH}" \
+  ${EXTRA_BUILD_ARGS} \
+  -f "${DOCKERFILE_PATH:-./Dockerfile}" \
   -t "${IMAGE_NAME}" .
