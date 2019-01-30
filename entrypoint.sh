@@ -1,5 +1,5 @@
 #!/bin/sh
-set -e
+set -ex
 
 export PATH="/home/sopel/.local/bin:${PATH}"
 
