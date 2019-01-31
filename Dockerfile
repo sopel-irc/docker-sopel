@@ -91,10 +91,6 @@ WORKDIR /home/sopel
 
 COPY --from=git-fetch --chown=sopel:sopel /sopel-src /home/sopel/sopel-src
 RUN set -ex \
-  ## If using a Python 2 based base-image, make sure to install the required
-  ## dependencies (uncomment below)
-  # && pip install --user \
-  #   backports.ssl_match_hostname \
   && cd ./sopel-src \
   && su-exec sopel python setup.py install --user \
   && cd .. \
