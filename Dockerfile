@@ -77,15 +77,16 @@ ARG SOPEL_UID
 
 RUN set -ex \
   && apk add --no-cache \
+    shadow \
+    su-exec \
     enchant \
 \
   && addgroup -g ${SOPEL_GID} sopel \
-  && adduser -u ${SOPEL_UID} -G sopel -h /home/sopel sopel -D \
+  && adduser -u ${SOPEL_UID} -G sopel -h /home/sopel -s /bin/ash sopel -D \
 \
   && mkdir /home/sopel/.sopel \
   && chown sopel:sopel /home/sopel/.sopel
 
-USER sopel
 WORKDIR /home/sopel
 
 COPY --from=git-fetch --chown=sopel:sopel /sopel-src /home/sopel/sopel-src
@@ -95,11 +96,9 @@ RUN set -ex \
   # && pip install --user \
   #   backports.ssl_match_hostname \
   && cd ./sopel-src \
-  && python setup.py install --user \
+  && su-exec sopel python setup.py install --user \
   && cd .. \
   && rm -rf ./sopel-src
-
-ENV PATH="/home/sopel/.local/bin:${PATH}"
 
 VOLUME [ "/home/sopel" ]
 
