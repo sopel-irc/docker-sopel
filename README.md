@@ -11,7 +11,7 @@
 
 * Sopel Homepage @ [Sopel, The Python IRC Bot](https://sopel.chat)
 * Sopel GitHub @ [sopel-irc/sopel](https://github.com/sopel-irc/sopel)
-* Docker GitHub @ [sopel-irc/sopel-docker](https://github.com/sopel-irc/sopel-docker)
+* Docker GitHub @ [sopel-irc/docker-sopel](https://github.com/sopel-irc/docker-sopel)
 * Docker Registry @ [sopelirc/sopel](https://hub.docker.com/r/sopelirc/sopel)
 
 ## Quickstart
