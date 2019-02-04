@@ -26,6 +26,7 @@ if [ "${#}" -eq 0 ] || [ "${1#-}" != "${1}" ]; then
 fi
 
 if [ "${1}" = "sopel" ]; then
+  [ -f "/pypi_packages.txt" ] && su-exec sopel pip install --user -r /pypi_packages.txt
   exec su-exec sopel "${@}"
 fi
 
