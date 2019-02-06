@@ -26,7 +26,13 @@ if [ "${#}" -eq 0 ] || [ "${1#-}" != "${1}" ]; then
 fi
 
 if [ "${1}" = "sopel" ]; then
-  [ -f "/pypi_packages.txt" ] && su-exec sopel pip install --user -r /pypi_packages.txt
+  if [ -f "/pypi_packages.txt" ]; then
+    cat /pypi_packages.txt | grep -v '^#' | grep -v '^$' | \
+      while read line; do
+        [ "${line}" = "\#*" ] && continue
+        su-exec sopel pip install --user "${line}"
+      done
+  fi
   exec su-exec sopel "${@}"
 fi
 
