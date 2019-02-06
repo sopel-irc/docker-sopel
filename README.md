@@ -79,18 +79,26 @@ A configuration file or folder can be mounted at `/home/sopel/.sopel` for use by
 
 If you are having permission issues, use the [`PUID` and `PGID` environment variables](#puid-and-pgid) to have the user in the container match the host ids. Alternately, you can change ownership of the configuration file/folder to match the container user (`uid=100000`, `gid=100000`)
 
-### Add third-party modules
+### Add third-party packages
 
-#### Modules available from PyPI
+#### Python packages
+
+##### Modules available from PyPI
 
 See [`EXTRA_PYPI_PACKAGES` environment variable](#extra_pypi_packages).
 
 You can also mount a pip `requirements.txt` formatted file to `/pypi_packages.txt` with a list of packages to be installed on startup.
 
 
-#### Modules from source
+##### Modules from source
 
 Mount the module source directory into `/home/sopel/.sopel/modules`, and Sopel will automatically recognize and load the module.
+
+#### Alpine Linux packages
+
+See [`EXTRA_APK_PACKAGES` environment variable](#extra_apk_packages).
+
+You can also mount a text file to `/apk_packages.txt` with a list of packages to be installed on startup.
 
 ---
 
@@ -131,3 +139,18 @@ Welcome to Sopel. Loading modules...
 ```
 
 will install the [sopel weather module](https://pypi.org/project/sopel-modules.weather), the [sopel YouTube module](https://pypi.org/project/sopel_modules.youtube) 
+
+### `EXTRA_APK_PACKAGES`
+
+Occasionally, you may need to install system packages to satisfy requirements for various Python packages. These packages can be specified as a space separated list of packages to be installed by `apk add --no-cache ...`. For example, you may need a database client, various tools required for compiling source code, and git to allow pip to install from a repository:
+
+```console
+$ docker run -e EXTRA_APK_PACKAGES="mysql-client build-base git" ...
+Installing apk packages: mysql-client build-base git...
+...
+...
+Welcome to Sopel. Loading modules...
+...
+```
+
+will install the required system packages.
