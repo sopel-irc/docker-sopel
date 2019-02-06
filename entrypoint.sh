@@ -52,7 +52,7 @@ fi
 # Run sopel
 if [ "${1}" = "sopel" ]; then
   # Install extra apk packages first to satisfy pip requirements
-  [ -f "/apk_packages.txt" ] && install_apk_packages $(cat /apk_packages.txt | tr $'\n' ' ')
+  [ -f "/apk_packages.txt" ] && install_apk_packages $(cat /apk_packages.txt | grep -v '^#' | grep -v '^$' | tr $'\n' ' ')
 
   [ -n "${EXTRA_APK_PACKAGES}" ] && install_apk_packages ${EXTRA_APK_PACKAGES}
 
