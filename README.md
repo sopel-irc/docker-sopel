@@ -119,7 +119,7 @@ Welcome to Sopel. Loading modules...
 ...
 ```
 
-Where, generally, you would set the `PUID`/`PGID` to match the mounted volume owner ids.
+where, generally, you would set the `PUID`/`PGID` to match the mounted volume owner ids.
 
 ### `EXTRA_PYPI_PACKAGES`
 
@@ -138,7 +138,7 @@ Welcome to Sopel. Loading modules...
 ...
 ```
 
-will install the [sopel weather module](https://pypi.org/project/sopel-modules.weather), the [sopel YouTube module](https://pypi.org/project/sopel_modules.youtube) 
+will install the [sopel weather module](https://pypi.org/project/sopel-modules.weather), the [sopel YouTube module](https://pypi.org/project/sopel_modules.youtube) and its [google-api-python-client](https://pypi.org/project/google-api-python-client) requirement.
 
 ### `EXTRA_APK_PACKAGES`
 
