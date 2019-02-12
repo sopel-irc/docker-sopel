@@ -69,7 +69,7 @@ LABEL maintainer="Humorous Baby <baby.humorous@gmail.com>" \
       org.label-schema.vcs-ref="${VCS_REF}" \
       org.label-schema.version="Python ${PYTHON_VERSION}/Sopel ${SOPEL_BRANCH}" \
       org.label-schema.schema-version="1.0" \
-      dockerfile.vcs-url="https://github.com/sopel-irc/sopel-docker" \
+      dockerfile.vcs-url="https://github.com/sopel-irc/docker-sopel" \
       dockerfile.vcf-ref="${DOCKERFILE_VCS_REF}"
 
 ARG SOPEL_GID
