@@ -4,6 +4,7 @@
 [![Docker Pulls](https://img.shields.io/docker/pulls/sopelirc/sopel.svg)](https://hub.docker.com/r/sopelirc/sopel)
 [![Image Layers](https://images.microbadger.com/badges/image/sopelirc/sopel.svg)](https://microbadger.com/images/sopelirc/sopel)
 [![Build from Commit](https://images.microbadger.com/badges/commit/sopelirc/sopel.svg)](https://microbadger.com/images/sopelirc/sopel)
+[![Build Status](https://travis-ci.org/sopel-irc/docker-sopel.svg?branch=master)](https://travis-ci.org/sopel-irc/docker-sopel)
 
 :whale: Officially Unofficial™ Docker container for Sopel, a Python IRC bot
 
