@@ -1,0 +1,36 @@
+language: python
+python: 2.7
+
+sudo: required
+services:
+  - docker
+
+git:
+  depth: false
+branches:
+  only:
+  - master
+
+env:
+  global:
+    - REGISTRY_REPO=sopelirc/sopel
+    - DEFAULT_PYTHON_TAG=3.6-alpine
+    - secure: "TcNimrMVgBnm0D5BAYK3m7XeiOLOQQt2H+UycLGmxnSMY0ClcVK+2FUXeLRptf7/2eW19PjkwRkEic8vEnGr0EPmf7Q4KjcDGl7LjEFlKzj1wKltvmTTdh/FbtheyS8Rt6RB+oNZIDxmEIw6w/IwWfkyGCrR/AZ1XxsFwdF44umrkUIao5AUEGWB8c3aAAkaxNfFLCAv3g0rfW1YhfhMwF4Z4BdvVoVqn3HVuyU1AaoU9FP4HFvmf4D/D1JZPLqAeGUVo9nhVBmfyGGpFkoxJ5clIw/RhvRvbBy4zVyWTZLW9J19By51KNwYVZ0kQQYZG52lpkSm3T6uwF1GigCVvSt/TpMN2dgEhD7j02J5ZedOGsbpQlcLN3Lnk0P9P64jRPCoD02S5Bmu/tv6vioattNlQAhLb7F8UKe0a4CLgfP8b5nO3qTnDlGzeAwogfas71Ec17eUdZQIz2CjObDtbQVsw/iYY8iumMsEsgYXt5497M+eoaXVCAHu8frlMl64OAYctkcPMopWGbAVWRARayqVXdVvjCyAl+eY8uBtNNnBSdhIVWdzvkgRhVxJ9p3VajXMJjBBIsjKsSCkzgSQ5fcA1AacT3zU7Sg2UdSjEvNgpxOgjj7vbuGKKCGc3dV84aW1LAzMEPlP1hNCrmV2Y0/fCSAUX2ajuKz6aZLieCI="
+
+  matrix:
+    - PYTHON_TAG=2.7-alpine
+    - PYTHON_TAG=3.4-alpine
+    - PYTHON_TAG=3.5-alpine
+    - PYTHON_TAG=3.6-alpine
+    - PYTHON_TAG=3.7-alpine
+
+install:
+  - pip install docker gitpython packaging
+
+before_script:
+  - export BUILD_DATE=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+  - export DOCKERFILE_VCS_REF=$(git rev-parse --short HEAD)
+
+script:
+  - python .travis/build-tag-deploy.py
+  - docker images
