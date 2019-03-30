@@ -40,6 +40,21 @@ install_apk_packages () {
   }
 }
 
+clear_pid_file () {
+  for f in /home/sopel/.sopel/*.pid; do
+    [ -e "${f}" ] || break
+    echo -en "\033[100mExisting .pid file(s) found... Removing...\033[0m"
+    if [ "$(ls /home/sopel/.sopel/*.pid  2> /dev/null | wc -l)" -gt "1" ]; then
+      echo -e "\033[31;100mFAILED! Multiple .pid files found.\033[0m" && return 1
+    fi
+    (rm -f /home/sopel/.sopel/*.pid && echo -e "\033[92;100mDone.\033[0m") || {
+      RC=$?
+      echo -e "\033[41mFAILED!\033[0m" && return $RC
+    }
+    break
+  done
+}
+
 # Check if IDs need to be changed
 [ -n "${PUID}" ] && change_uid "${PUID}"
 [ -n "${PGID}" ] && change_gid "${PGID}"
@@ -70,6 +85,7 @@ if [ "${1}" = "sopel" ]; then
   fi
 
   # Run sopel
+  clear_pid_file
   exec su-exec sopel "${@}"
 fi
 
