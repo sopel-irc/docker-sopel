@@ -58,7 +58,7 @@ ARG SOPEL_BRANCH
 ARG BUILD_DATE
 ARG VCS_REF
 ARG DOCKERFILE_VCS_REF
-LABEL maintainer="Humorous Baby <baby.humorous@gmail.com>" \
+LABEL maintainer="Humorous Baby <humorbaby@humorbaby.net>" \
       org.label-schema.build-date="${BUILD_DATE}" \
       org.label-schema.name="sopel" \
       org.label-schema.description=" \
