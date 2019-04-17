@@ -76,10 +76,11 @@ ARG SOPEL_GID
 ARG SOPEL_UID
 
 RUN set -ex \
+  && apk add --no-cache --virtual build-deps gcc build-base python-dev \
   && apk add --no-cache \
     shadow \
     su-exec \
-    enchant \
+    aspell-dev \
 \
   && addgroup -g ${SOPEL_GID} sopel \
   && adduser -u ${SOPEL_UID} -G sopel -h /home/sopel -s /bin/ash sopel -D \
@@ -94,7 +95,8 @@ RUN set -ex \
   && cd ./sopel-src \
   && su-exec sopel python setup.py install --user \
   && cd .. \
-  && rm -rf ./sopel-src
+  && rm -rf ./sopel-src \
+  && apk del build-deps
 
 VOLUME [ "/home/sopel" ]
 
