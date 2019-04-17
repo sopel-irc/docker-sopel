@@ -96,7 +96,7 @@ RUN set -ex \
   && cd .. \
   && rm -rf ./sopel-src
 
-VOLUME [ "/home/sopel" ]
+VOLUME [ "/home/sopel/.sopel" ]
 
 COPY entrypoint.sh /entrypoint.sh
 
