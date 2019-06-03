@@ -21,7 +21,7 @@
 
 ### First run
 
-* Pull the docker image for the latest Sopel release ([v6.6.8](https://github.com/sopel-irc/sopel/releases/tag/v6.6.8))
+* Pull the docker image for the latest Sopel release ([v6.6.9](https://github.com/sopel-irc/sopel/releases/tag/v6.6.9))
 
     ```console
     $ docker pull sopelirc/sopel:latest

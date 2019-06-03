@@ -1,2 +1,2 @@
 # List of Sopel versions to build:
-v6.6.8
+v6.6.9
