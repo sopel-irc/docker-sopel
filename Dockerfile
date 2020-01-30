@@ -3,7 +3,7 @@
 ## Set the python image tag to use as the base image. 
 # See https://hub.docker.com/_/python?tab=tags for a list of valid tags.
 # Set  default below to desired Python version.
-ARG PYTHON_TAG=3.6-alpine
+ARG PYTHON_TAG=3.8-alpine
 ##
 
 ## Set the UID/GID that sopel will run and make files/folders as.
