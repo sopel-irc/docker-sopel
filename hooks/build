@@ -8,7 +8,7 @@ set -ex
 # since these two variables should be updated (or atleast checked) together
 # with new sopel versions.
 PYTHON_TAG=${PYTHON_TAG:-3.6-alpine}
-SOPEL_BRANCH=${SOPEL_BRANCH:-v6.6.5}
+SOPEL_BRANCH=${SOPEL_BRANCH:-v7.0.0}
 
 # Prevent cache busting during development builds by allowing build-specific
 # ARGs to be set by environment variables.
