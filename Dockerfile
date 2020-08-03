@@ -23,7 +23,7 @@ ARG SOPEL_REPO=https://github.com/sopel-irc/sopel.git
 ## Set the specific branch/commit for the source
 # This can be a branch name, release/tag, or even specific commit hash.
 # Set Docker build-arg SOPEL_BRANCH, or replace the default value below.
-ARG SOPEL_BRANCH=v7.0.4
+ARG SOPEL_BRANCH=v7.0.5
 ##
 
 ## Do not modify below this !! ##
@@ -79,6 +79,7 @@ RUN set -ex \
   && apk add --no-cache \
     shadow \
     su-exec \
+    gcc build-base \
 \
   && addgroup -g ${SOPEL_GID} sopel \
   && adduser -u ${SOPEL_UID} -G sopel -h /home/sopel -s /bin/ash sopel -D \
@@ -93,7 +94,8 @@ RUN set -ex \
   && cd ./sopel-src \
   && su-exec sopel python setup.py install --user \
   && cd .. \
-  && rm -rf ./sopel-src
+  && rm -rf ./sopel-src \
+  && apk del gcc build-base
 
 VOLUME [ "/home/sopel/.sopel" ]
 
