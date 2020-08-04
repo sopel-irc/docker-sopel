@@ -79,7 +79,9 @@ RUN set -ex \
   && apk add --no-cache \
     shadow \
     su-exec \
-    gcc build-base \
+  && apk add --no-cache --virtual .build-deps \
+    gcc \
+    build-base \
 \
   && addgroup -g ${SOPEL_GID} sopel \
   && adduser -u ${SOPEL_UID} -G sopel -h /home/sopel -s /bin/ash sopel -D \
