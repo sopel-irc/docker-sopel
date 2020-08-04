@@ -97,7 +97,7 @@ RUN set -ex \
   && su-exec sopel python setup.py install --user \
   && cd .. \
   && rm -rf ./sopel-src \
-  && apk del gcc build-base
+  && apk del .build-deps
 
 VOLUME [ "/home/sopel/.sopel" ]
 
