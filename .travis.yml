@@ -21,6 +21,7 @@ env:
     - PYTHON_TAG=3.6-alpine
     - PYTHON_TAG=3.7-alpine
     - PYTHON_TAG=3.8-alpine
+    - PYTHON_TAG=3.9-alpine
 
 install:
   - pip install docker gitpython packaging
