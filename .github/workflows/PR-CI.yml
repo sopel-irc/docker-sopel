@@ -1,0 +1,64 @@
+# This is a basic workflow to help you get started with Actions
+
+name: Test Pull Requests
+
+# Controls when the action will run. Triggers the workflow on push or pull request
+# events but only for the main branch
+on:
+  pull_request:
+    branches: [ master ] #PR's only targeting master
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+  
+    env:
+      PLATFORM: "linux/amd64,linux/386,linux/arm64,linux/arm/v7,linux/arm/v6"
+      default_python: "3.9"
+
+    strategy:
+      fail-fast: true
+      matrix:
+        python_images: [3.6,3.7,3.8,3.9]
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+
+      -
+        name: Set up QEMU
+        uses: docker/setup-qemu-action@v1
+
+      -
+        name: Set up Docker Buildx
+        id: buildx
+        uses: docker/setup-buildx-action@v1
+        with:
+          install: true
+
+      -
+        name: Inspect builder
+        run: |
+          echo "Name:      ${{ steps.buildx.outputs.name }}"
+          echo "Endpoint:  ${{ steps.buildx.outputs.endpoint }}"
+          echo "Status:    ${{ steps.buildx.outputs.status }}"
+          echo "Flags:     ${{ steps.buildx.outputs.flags }}"
+          echo "Platforms: ${{ steps.buildx.outputs.platforms }}"
+
+      -
+        name: Build SOPEL for ${{ matrix.python_images }}
+        env:
+          IMAGE: adamus1red/sopel
+        uses: docker/build-push-action@v2
+        with:
+          builder: ${{ steps.buildx.outputs.name }}
+          context: .
+          file: ./Dockerfile
+          platforms: ${{ env.PLATFORM }}
+          build-args: PYTHON_TAG=${{ matrix.python_images }}-alpine
+          push: ${{ github.event_name != 'pull_request' }}
+          tags: sopel:test-py${{ matrix.python_images }}
