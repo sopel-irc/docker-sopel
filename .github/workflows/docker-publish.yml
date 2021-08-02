@@ -13,11 +13,11 @@ on:
     branches: [ master ]
 
   workflow_dispatch: 
-    
+
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
-  build:
+  build_and_push:
+    name: Build, tag, and push images
     env:
       default_python: "3.9"
 
@@ -60,14 +60,14 @@ jobs:
         id: tags
         env:
           PYTHON_TAG: ${{ matrix.python_images }}
-          IMAGE: ${{ secrets.IMAGE }}
+          IMAGE: ${{ secrets.DOCKER_SOPEL_IMAGE_NAME }}
           version: ${{ env.RELEASE_VERSION }}
         run: | 
           TAGS="${IMAGE}:${version}-py${PYTHON_TAG},${IMAGE}:${version%.*}-py${PYTHON_TAG},${IMAGE}:${version%.*.*}-py${PYTHON_TAG}"
           if [[ "x${{ matrix.python_images }}" == "x${{ env.default_python }}" ]] && [[ "${{ github.event_name }}" == "push" || "${{ github.event_name }}" == "workflow_dispatch" ]]; then
             TAGS="${TAGS},${IMAGE}:${version},${IMAGE}:${version%.*},${IMAGE}:${version%.*.*},${IMAGE}:latest"
           elif [[ "${{ github.event_name }}" == "schedule" ]]; then
-            TAGS="${IMAGE}:${GITHUB_SHA::8},${IMAGE}:nightly"
+            TAGS="${IMAGE}:nightly"
           fi
           echo ::set-output name=tags::${TAGS}
 
@@ -76,15 +76,29 @@ jobs:
         uses: docker/login-action@v1
         if: github.event_name != 'pull_request'
         with:
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
+          username: ${{ secrets.DOCKER_HUB_USERNAME }}
+          password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
       -
         name: Build SOPEL for ${{ matrix.python_images }}
         uses: docker/build-push-action@v2
+        if: github.event_name != 'schedule'
         with:
           builder: ${{ steps.buildx.outputs.name }}
           context: .
           file: ./Dockerfile
           build-args: PYTHON_TAG=${{ matrix.python_images }}-alpine
+          push: ${{ github.event_name != 'pull_request' }}
+          tags: ${{ steps.tags.outputs.tags }}
+      -
+        name: Build Nightly SOPEL for ${{ matrix.python_images }}
+        uses: docker/build-push-action@v2
+        if: github.event_name == 'schedule' && matrix.python_images == env.default_python
+        with:
+          builder: ${{ steps.buildx.outputs.name }}
+          context: .
+          file: ./Dockerfile
+          build-args: |
+            PYTHON_TAG=${{ matrix.python_images }}-alpine
+            SOPEL_BRANCH=master
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.tags.outputs.tags }}

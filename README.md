@@ -100,6 +100,10 @@ See [`EXTRA_APK_PACKAGES` environment variable](#extra_apk_packages).
 
 You can also mount a text file to `/apk_packages.txt` with a list of packages to be installed on startup.
 
+### Nightly Builds
+
+An image based on the master branch of [sopel-irc/sopel](https://github.com/sopel-irc/sopel) is rebuilt each day at 00:00 UTC using the `nightly` tag.
+
 ---
 
 ## Environment Variables
