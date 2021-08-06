@@ -20,7 +20,7 @@
 
 ### First run
 
-* Pull the docker image for the latest Sopel release ([v7.1.1](https://github.com/sopel-irc/sopel/releases/tag/v7.1.1))
+* Pull the docker image for the latest Sopel release ([v7.1.2](https://github.com/sopel-irc/sopel/releases/tag/v7.1.2))
 
     ```console
     $ docker pull sopelirc/sopel:latest
