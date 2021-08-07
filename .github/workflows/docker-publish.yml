@@ -63,6 +63,7 @@ jobs:
           IMAGE: ${{ secrets.DOCKER_SOPEL_IMAGE_NAME }}
           version: ${{ env.RELEASE_VERSION }}
         run: | 
+          if [ "${{ github.event_name }}" == "pull_request" ]; then IMAGE="sopel"; fi
           TAGS="${IMAGE}:${version}-py${PYTHON_TAG},${IMAGE}:${version%.*}-py${PYTHON_TAG},${IMAGE}:${version%.*.*}-py${PYTHON_TAG}"
           if [[ "x${{ matrix.python_images }}" == "x${{ env.default_python }}" ]] && [[ "${{ github.event_name }}" == "push" || "${{ github.event_name }}" == "workflow_dispatch" ]]; then
             TAGS="${TAGS},${IMAGE}:${version},${IMAGE}:${version%.*},${IMAGE}:${version%.*.*},${IMAGE}:latest"
