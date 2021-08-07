@@ -1,9 +1,10 @@
 # Sopel for Docker
 
-[![Docker Stars](https://img.shields.io/docker/stars/sopelirc/sopel.svg)](https://hub.docker.com/r/sopelirc/sopel)
-[![Docker Pulls](https://img.shields.io/docker/pulls/sopelirc/sopel.svg)](https://hub.docker.com/r/sopelirc/sopel)
-[![Image Layers](https://images.microbadger.com/badges/image/sopelirc/sopel.svg)](https://microbadger.com/images/sopelirc/sopel)
-[![Build from Commit](https://images.microbadger.com/badges/commit/sopelirc/sopel.svg)](https://microbadger.com/images/sopelirc/sopel)
+[![Docker Stars](https://img.shields.io/docker/stars/sopelirc/sopel?style=flat-square)](https://hub.docker.com/r/sopelirc/sopel)
+[![Docker Pulls](https://img.shields.io/docker/pulls/sopelirc/sopel?style=flat-square)](https://hub.docker.com/r/sopelirc/sopel)
+[![Docker Image Size (latest)](https://img.shields.io/docker/image-size/sopelirc/sopel/latest?label=latest&style=flat-square)](https://hub.docker.com/r/sopelirc/sopel/tags)
+[![Docker Image Size (nightly)](https://img.shields.io/docker/image-size/sopelirc/sopel/nightly?label=nightly&style=flat-square)](https://hub.docker.com/r/sopelirc/sopel/tags)
+[![GitHub Workflow Status (branch)](https://img.shields.io/github/workflow/status/sopel-irc/docker-sopel/Docker%20Build%20and%20Publish/master?style=flat-square)](https://github.com/sopel-irc/docker-sopel/actions/workflows/docker-publish.yml)
 
 :whale: Officially Unofficial™ Docker container for Sopel, a Python IRC bot
 
