@@ -94,7 +94,7 @@ WORKDIR /home/sopel
 COPY --from=git-fetch --chown=sopel:sopel /sopel-src /home/sopel/sopel-src
 RUN set -ex \
   && cd ./sopel-src \
-  && su-exec sopel python setup.py install --user \
+  && su-exec sopel python -m pip install . \
   && cd .. \
   && rm -rf ./sopel-src \
   && apk del .build-deps
