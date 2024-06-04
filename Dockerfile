@@ -3,7 +3,7 @@
 ## Set the python image tag to use as the base image. 
 # See https://hub.docker.com/_/python?tab=tags for a list of valid tags.
 # Set  default below to desired Python version.
-ARG PYTHON_TAG=3.9-alpine
+ARG PYTHON_TAG=3.12-alpine
 ##
 
 ## Set the UID/GID that sopel will run and make files/folders as.
@@ -23,7 +23,7 @@ ARG SOPEL_REPO=https://github.com/sopel-irc/sopel.git
 ## Set the specific branch/commit for the source
 # This can be a branch name, release/tag, or even specific commit hash.
 # Set Docker build-arg SOPEL_BRANCH, or replace the default value below.
-ARG SOPEL_BRANCH=v7.1.9
+ARG SOPEL_BRANCH=v8.0.0
 ##
 
 ## Do not modify below this !! ##
