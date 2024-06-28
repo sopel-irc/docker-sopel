@@ -81,7 +81,7 @@ jobs:
           password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
       -
         name: Build SOPEL for ${{ matrix.python_images }}
-        uses: docker/build-push-action@v5
+        uses: docker/build-push-action@v6
         if: github.event_name != 'schedule'
         with:
           builder: ${{ steps.buildx.outputs.name }}
@@ -92,7 +92,7 @@ jobs:
           tags: ${{ steps.tags.outputs.tags }}
       -
         name: Build Nightly SOPEL for ${{ matrix.python_images }}
-        uses: docker/build-push-action@v5
+        uses: docker/build-push-action@v6
         if: github.event_name == 'schedule' && matrix.python_images == env.default_python
         with:
           builder: ${{ steps.buildx.outputs.name }}
