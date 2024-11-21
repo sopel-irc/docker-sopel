@@ -4,7 +4,7 @@
 [![Docker Pulls](https://img.shields.io/docker/pulls/sopelirc/sopel?style=flat-square)](https://hub.docker.com/r/sopelirc/sopel)
 [![Docker Image Size (latest)](https://img.shields.io/docker/image-size/sopelirc/sopel/latest?label=latest&style=flat-square)](https://hub.docker.com/r/sopelirc/sopel/tags)
 [![Docker Image Size (nightly)](https://img.shields.io/docker/image-size/sopelirc/sopel/nightly?label=nightly&style=flat-square)](https://hub.docker.com/r/sopelirc/sopel/tags)
-[![GitHub Workflow Status (branch)](https://img.shields.io/github/workflow/status/sopel-irc/docker-sopel/Docker%20Build%20and%20Publish/master?style=flat-square)](https://github.com/sopel-irc/docker-sopel/actions/workflows/docker-publish.yml)
+[![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/sopel-irc/docker-sopel/docker-publish.yml?branch=master&style=flat-square)](https://github.com/sopel-irc/docker-sopel/actions/workflows/docker-publish.yml)
 
 :whale: Officially Unofficial™ Docker container for Sopel, a Python IRC bot
 
