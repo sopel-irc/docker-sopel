@@ -27,18 +27,26 @@
     $ docker pull sopelirc/sopel:latest
     ```
 
-* Start your bot. Specify a name (e.g., `my_first_sopel`) for the container to make subsequent startups and shutdowns easier.
+* Configure your bot. 
 
     ```console
-    $ docker run --name=my_first_sopel -ti sopelirc/sopel
+    $ docker run --rm -v /docker/sopel:/home/sopel/.sopel/ -ti sopelirc/sopel sopel configure
     ```
 
-    On the first run, you will be taken through the setup wizard to write the bot's configuration file. See the ["First run" Sopel Wiki entry](https://sopel.chat/tutorials/part-1-installation/#first-run) for more details.
+    The example uses a docker volume to store the configuration file in a folder at /docker/sopel. Please change to match your requirements
+
+    You will be taken through the setup wizard to write the bot's configuration file. See the ["First run" Sopel Wiki entry](https://sopel.chat/tutorials/part-1-installation/#first-run) for more details.
+
+* Start your bot. Specify a name (e.g., `my_sopel`) for the container to make subsequent startups and shutdowns easier.
+
+    ```console
+    $ docker run --name=my_sopel -v /docker/sopel:/home/sopel/.sopel/ -ti sopelirc/sopel
+    ```
 
 ### Stopping and starting the bot
 
-* You can stop the bot started with the command above with a simple keyboard interrupt (`Ctrl-C`), or use the docker stop command: `docker stop my_first_sopel`
-* The bot can be restarted with the docker start command: `docker start -ia my_first_sopel`. 
+* You can stop the bot started with the command above with a simple keyboard interrupt (`Ctrl-C`), or use the docker stop command: `docker stop my_sopel`
+* The bot can be restarted with the docker start command: `docker start -ia my_sopel`. 
 
     **Note:**  containers started with `docker start ...` need to be stopped with `docker stop ...` (`Ctrl-C` will not work) as in the example above.
 
@@ -54,12 +62,12 @@ Following the [Quickstart](#quickstart) steps will generate a configuration dire
 
 * copy the `default.cfg` file to `/some/path/on/the/host` directory
     ```console
-    $ docker cp my_first_sopel:/home/sopel/.sopel/default.cfg /some/path/on/the/host/
+    $ docker cp my_sopel:/home/sopel/.sopel/default.cfg /some/path/on/the/host/
     ```
 * copy the entire `~/.sopel` configuration directory to `/some/path/on/the/host` directory
   
     ```console
-    $ docker cp my_first_sopel:/home/sopel/.sopel /some/path/on/the/host/
+    $ docker cp my_sopel:/home/sopel/.sopel /some/path/on/the/host/
     ```
 
 The extracted configuration file/folder can now be transfered or copied to be used as a template for other bots.
