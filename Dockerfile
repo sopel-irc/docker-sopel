@@ -23,7 +23,7 @@ ARG SOPEL_REPO=https://github.com/sopel-irc/sopel.git
 ## Set the specific branch/commit for the source
 # This can be a branch name, release/tag, or even specific commit hash.
 # Set Docker build-arg SOPEL_BRANCH, or replace the default value below.
-ARG SOPEL_BRANCH=v8.0.3
+ARG SOPEL_BRANCH=v8.0.4
 ##
 
 ## Do not modify below this !! ##
